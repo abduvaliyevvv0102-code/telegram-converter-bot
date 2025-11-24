@@ -14,15 +14,15 @@ from docx2pdf import convert
 # =================================================================
 
 # !!! DIQQAT: TOKENINGIZNI BU YERGA KIRITING !!!
+# Render'ga yuklaganingiz uchun bu qator to'g'ri bo'lishi kerak.
 TOKEN = "8153725473:AAEO5Vj1IMPQj9PNjNCTgRifyRbzHFzS4YI" 
 
-# === WEBHOOK SOZLAMALARI (RENDER.COM uchun) ===
+# === WEBHOOK SOZLAMALARI (TO'G'RILANGAN QISM) ===
 # Render portini avtomatik olish uchun
 PORT = int(os.environ.get('PORT', '8000')) 
 
-#!!! DIQQAT !!! Botni Render'da joylashtirgandan so'ng, bu manzilni
-# (masalan: https://converter-bot-abc123.onrender.com/) bilan almashtirishingiz SHART!
-WEBHOOK_URL = 'https://[RENDER-APP-NAME].onrender.com/' 
+#!!! DIQQAT !!! Sizning haqiqiy Render URL manzilingiz kiritildi.
+WEBHOOK_URL = 'https://telegram-converter-bot-ygj1.onrender.com/' 
 
 # =========================================
 
@@ -115,10 +115,10 @@ async def document_converter(update: Update, context: Application) -> None:
     try:
         document = update.message.document
         
-        # Faylni yuklab olish (TO'G'RILANGAN QISM)
+        # Faylni yuklab olish (To'g'ri funksiya)
         file_data = await context.bot.get_file(document.file_id)
         file_bytes = BytesIO()
-        await file_data.download_to_memory(file_bytes) # <--- To'g'ri va xatosiz funksiya
+        await file_data.download_to_memory(file_bytes)
         file_bytes.seek(0)
         
         file_name = document.file_name.lower()
@@ -151,7 +151,7 @@ async def document_converter(update: Update, context: Application) -> None:
                     filename=document.file_name.replace(".pdf", ".docx"),
                     caption="✅ PDF fayli DOCX formatiga muvaffaqiyatli o'tkazildi!"
                 )
-            except: Exception as pdf_e:
+            except Exception as pdf_e:
                 await update.message.reply_text(f"Konvertatsiya jarayonida xatolik yuz berdi: {pdf_e}")
 
         
@@ -191,7 +191,7 @@ async def document_converter(update: Update, context: Application) -> None:
     except Exception as e:
         await update.message.reply_text(f"Kutilmagan xatolik yuz berdi: {e}")
 
-    # Faylni qayta ishlash tugaganidan keyin vaqtinchalik fayllarni o'chirish (Xotira to'lmasligi uchun)
+    # Faylni qayta ishlash tugaganidan keyin vaqtinchalik fayllarni o'chirish
     finally:
         if os.path.exists(temp_pdf_name):
             os.remove(temp_pdf_name)
@@ -222,7 +222,7 @@ def main() -> None:
     
     application.add_handler(MessageHandler(filters.Document.ALL & ~filters.PHOTO & ~filters.COMMAND, document_converter)) 
 
-    # Botni WEBHOOK rejimida ishga tushirish (24/7 ishlash uchun)
+    # Botni WEBHOOK rejimida ishga tushirish (Render manzilini ishlatadi)
     WEBHOOK_ADDRESS = WEBHOOK_URL + TOKEN
     
     print(f"Bot Webhook rejimida ishga tushmoqda. Port: {PORT}")
