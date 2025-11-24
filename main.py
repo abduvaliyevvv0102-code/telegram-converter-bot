@@ -155,33 +155,33 @@ async def document_converter(update: Update, context: Application) -> None:
                 await update.message.reply_text(f"Konvertatsiya jarayonida xatolik yuz berdi: {pdf_e}")
 
         
-        elif file_name.endswith(('.docx', '.doc')):
+        #elif file_name.endswith(('.docx', '.doc')):
             # ====================================
             # WORD (DOCX) -> PDF
             # ====================================
-            await update.message.reply_text("Word → PDF konvertatsiya boshlandi...")
+           # await update.message.reply_text("Word → PDF konvertatsiya boshlandi...")
             
-            temp_docx_name = temp_file_base + ".docx"
-            temp_pdf_name = temp_file_base + ".pdf"
+            #temp_docx_name = temp_file_base + ".docx"
+            #temp_pdf_name = temp_file_base + ".pdf"
             
-            with open(temp_docx_name, 'wb') as f:
+            #with open(temp_docx_name, 'wb') as f:
                 f.write(file_bytes.getvalue())
             
-            try:
+            #try:
                 # docx2pdf uchun kerakli buyruq
-                convert(temp_docx_name, temp_pdf_name)
+             #   convert(temp_docx_name, temp_pdf_name)
 
-                with open(temp_pdf_name, 'rb') as f:
-                    pdf_buffer = BytesIO(f.read())
+              #  with open(temp_pdf_name, 'rb') as f:
+               #     pdf_buffer = BytesIO(f.read())
                 
-                await update.message.reply_document(
-                    document=pdf_buffer, 
-                    filename=document.file_name.replace(".docx", ".pdf").replace(".doc", ".pdf"),
-                    caption="✅ Word fayli PDF formatiga muvaffaqiyatli o'tkazildi!"
-                )
-            except Exception as docx_e:
-                await update.message.reply_text(f"⚠️ Word → PDF konvertatsiyasi xatolik yuz berdi:\n\n"
-                                                f"Ehtimol, serverda **Microsoft Word** yoki **LibreOffice** o'rnatilmagan. Xatolik: {docx_e}")
+                #await update.message.reply_document(
+                 #   document=pdf_buffer, 
+                  #  filename=document.file_name.replace(".docx", ".pdf").replace(".doc", ".pdf"),
+                   # caption="✅ Word fayli PDF formatiga muvaffaqiyatli o'tkazildi!"
+                #)
+            #except Exception as docx_e:
+             #   await update.message.reply_text(f"⚠️ Word → PDF konvertatsiyasi xatolik yuz berdi:\n\n"
+              #                                  f"Ehtimol, serverda **Microsoft Word** yoki **LibreOffice** o'rnatilmagan. Xatolik: {docx_e}")
 
         
         else:
