@@ -7,7 +7,7 @@ from telegram.ext import (
 from io import BytesIO
 from PIL import Image
 from pdf2docx import Converter
-from docx2pdf import convert
+#from docx2pdf import convert
 
 # =================================================================
 # GLOBAL SOZLAMALAR
