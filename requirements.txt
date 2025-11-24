@@ -1,0 +1,4 @@
+python-telegram-bot
+Pillow
+pdf2docx
+docx2pdf
