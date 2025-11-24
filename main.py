@@ -43,10 +43,9 @@ async def start(update: Update, context: Application) -> None:
     user = update.effective_user
     await update.message.reply_html(
         f"Assalomu alaykum, {user.mention_html()}! 👋\n"
-        "Men Universal Konvertor Botiman. Men 24/7 ishlayman!\n\n"
-        "🔸 **Rasm (JPG/PNG)** yuboring, PDF uchun nom so'rayman.\n"
-        "🔸 **PDF** yuboring, uni Word (DOCX) ga aylantiraman.\n"
-        "🔸 **Word (DOCX)** yuboring, uni PDF ga aylantiraman."
+        "Men Universal Konvertor Botiman. Bot 24/7 ishlaydi"
+        "🔸 **Rasm (JPG/PNG)** yuboring."
+        "🔸 **PDF** yuboring, uni Word (DOCX) ga aylantiraman"
     )
 
 # --- Rasm Konvertatsiyasi Funksiyalari ---
@@ -62,7 +61,7 @@ async def start_img_conversion(update: Update, context: Application) -> int:
     context.user_data['photo_bytes'] = photo_data 
     
     await update.message.reply_text(
-        "PDF uchun nom kiriting (Masalan: Diplom_ishi). Nom oxiriga '.pdf' qo'shish shart emas:"
+        "PDF uchun nom kiriting:"
     )
     
     return GET_PDF_NAME
