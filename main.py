@@ -43,9 +43,10 @@ async def start(update: Update, context: Application) -> None:
     user = update.effective_user
     await update.message.reply_html(
         f"Assalomu alaykum, {user.mention_html()}! 👋\n"
-        "Men Universal Konvertor Botiman. Bot 24/7 ishlaydi"
-        "🔸 **Rasm (JPG/PNG)** yuboring."
-        "🔸 **PDF** yuboring, uni Word (DOCX) ga aylantiraman"
+        "Men Universal Konvertor Botiman. Bot 24/7 ishlaydi!\n"
+        "🔸 Rasm yuboring,PDF ga aylantiraman.\n"
+        "🔸 **PDF** yuboring, uni Word ga aylantiraman.\n"
+        "🔸 DIQQAT! Bot eng uzog`i 1 daqiqagacha kechikishi mumkin.\n"
     )
 
 # --- Rasm Konvertatsiyasi Funksiyalari ---
